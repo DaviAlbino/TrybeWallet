@@ -3,6 +3,7 @@ import fetchAPI from '../../services/currenciesAPI';
 
 export const NEW_USER = 'NEW_USER';
 export const NEW_BILL = 'NEW_BILL';
+export const NEW_EXPENSE = 'NEW_EXPENSE';
 export const BILL_ERROR = 'BILL_ERROR';
 
 export const addUser = (email) => ({
@@ -13,6 +14,11 @@ export const addUser = (email) => ({
 export const addNewBill = (currencies) => ({
   type: NEW_BILL,
   currencies,
+});
+
+export const addNewExpense = (expenses) => ({
+  type: NEW_EXPENSE,
+  expenses,
 });
 
 export const addNewError = (error) => ({
@@ -32,3 +38,15 @@ export function currenciesThunk() {
     }
   };
 }
+
+export const expenseThunk = (inputs) => async (dispatch) => {
+  try {
+    const data = await fetchAPI();
+    const exchangeRates = await data;
+    const newData = { ...inputs, exchangeRates };
+    console.log(newData);
+    dispatch(addNewExpense(newData));
+  } catch (error) {
+    dispatch(addNewError(error));
+  }
+};
