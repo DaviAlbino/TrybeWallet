@@ -32,7 +32,6 @@ class WalletForm extends Component {
     const { expensesList } = this.props;
 
     await expensesList(this.state);
-    // console.log(await expensesList(this.state));
 
     this.setState({
       id: id + 1,
