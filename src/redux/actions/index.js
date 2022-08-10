@@ -5,6 +5,7 @@ export const NEW_USER = 'NEW_USER';
 export const NEW_BILL = 'NEW_BILL';
 export const NEW_EXPENSE = 'NEW_EXPENSE';
 export const BILL_ERROR = 'BILL_ERROR';
+export const DEL_EXPENSE = 'DEL_EXPENSE';
 
 export const addUser = (email) => ({
   type: NEW_USER,
@@ -50,3 +51,8 @@ export const expenseThunk = (inputs) => async (dispatch) => {
     dispatch(addNewError(error));
   }
 };
+
+export const deleteExpense = (del) => ({
+  type: DEL_EXPENSE,
+  del,
+});
